@@ -62,6 +62,8 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),
+
+            Text::make('Phone Number'),
         ];
     }
 
@@ -84,7 +86,9 @@ class User extends Resource
      */
     public function filters(NovaRequest $request)
     {
-        return [];
+        return [
+            new Filters\PhoneFilter(),
+        ];
     }
 
     /**
